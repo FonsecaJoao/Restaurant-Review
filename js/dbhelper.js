@@ -96,7 +96,8 @@ class DBHelper {
           results = results.filter(r => r.cuisine_type == cuisine);
         }
         if (neighborhood != 'all') { // filter by neighborhood
-          results = results.filter(r => r.neighborhood == neighborhood);
+          const sameCuisine = r => r.cuisine_type == cuisine
+          results = results.filter(sameCuisine);
         }
         callback(null, results);
       }
@@ -166,17 +167,5 @@ class DBHelper {
       marker.addTo(newMap);
     return marker;
   }
-
-  //  static mapMarkerForRestaurant(restaurant, map) {
-  //   const marker = new google.maps.Marker({
-  //     position: restaurant.latlng,
-  //     title: restaurant.name,
-  //     url: DBHelper.urlForRestaurant(restaurant),
-  //     map: map,
-  //     animation: google.maps.Animation.DROP}
-  //   );
-  //   return marker;
-  // }
-
 }
 

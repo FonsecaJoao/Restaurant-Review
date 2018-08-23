@@ -2,10 +2,7 @@
  * Register the service worker
  */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker
-    .register('./sw.js', {
-      scope: './'
-    })
+  navigator.serviceWorker.register('/sw.js')
     .then(function () {
       console.log('Service Worker registered');
     })
@@ -105,19 +102,6 @@ initMap = () => {
   updateRestaurants();
 }
 
-//  window.initMap = () => {
-//   let loc = {
-//     lat: 40.722216,
-//     lng: -73.987501
-//   };
-//   self.map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 12,
-//     center: loc,
-//     scrollwheel: false
-//   });
-//   updateRestaurants();
-// }
-
 /**
  * Update page and map for current restaurants.
  */
@@ -213,7 +197,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
     }
     self.markers.push(marker);
   });
-
 }
 
 insertAltToImg = () => {
@@ -221,40 +204,32 @@ insertAltToImg = () => {
 
   for (var i = 0; i < li.length; i++) {
     li[i].childNodes[0].alt = li[i].childNodes[1].innerHTML;
+    li[i].childNodes[0].alt += ' Restaurant Picture';
   }
 }
 
-//  addMarkersToMap = (restaurants = self.restaurants) => {
-//   restaurants.forEach(restaurant => {
-//     // Add marker to the map
-//     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
-//     google.maps.event.addListener(marker, 'click', () => {
-//       window.location.href = marker.url
-//     });
-//     self.markers.push(marker);
-//   });
-// }
-
-$(document).ready(function() {
+skipLinks = () => {
+  const skipLink = document.getElementById('skip');
   // bind a click event to the 'skip' link
-  $(".skip").click(function(event){
+  skipLink.addEventListener("click", function(event){
     
       // strip the leading hash and declare
       // the content we're skipping to
-      var skipTo="#"+this.href.split('#')[1];
+      var skipTo = "#"+this.href.split('#')[1];
     
       // Setting 'tabindex' to -1 takes an element out of normal 
       // tab flow but allows it to be focused via javascript
-      $(skipTo).attr('tabindex', -1).on('blur focusout', function () {
+      skipTo.getAttribute('tabindex', -1).on('blur focusout', function () {
     
           // when focus leaves this element, 
           // remove the tabindex attribute
-          $(this).removeAttr('tabindex');
+          $(this).removeAttribute('tabindex');
     
       }).focus(); // focus on the content container
   });
-});
+}
 
-$(window).on('load', function() {
+window.addEventListener('load', function() {
   insertAltToImg();
+  skipLinks();
 });

@@ -1,5 +1,7 @@
 {
-  "name": "Restaurant Reviews",
-  "background_color": "#eee",
-  "theme_color": "#252831"
+	"short_name": "SaucePan",
+	"name": "Restaurant Reviews",
+	"background_color": "#eee",
+	"theme_color": "#252831",
+	"display": "standalone"
 }
