@@ -219,7 +219,7 @@ a.skip:active, a.skip:focus, a.skip:hover {
   min-width: 100%;
   padding: 20px;
 }
-#restaurants-list li h1 {
+#restaurants-list li h3 {
   color: #b82a00;
   font-family: 'Exo', sans-serif;
   font-size: 14pt;

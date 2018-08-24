@@ -162,9 +162,10 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.setAttribute('alt', 'Image of ' + restaurant.name + "'s " + 'Restaurant');
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h3');
   name.innerHTML = restaurant.name;
   li.append(name);
 
@@ -199,15 +200,6 @@ addMarkersToMap = (restaurants = self.restaurants) => {
   });
 }
 
-insertAltToImg = () => {
-  const li = document.getElementsByTagName('li');
-
-  for (var i = 0; i < li.length; i++) {
-    li[i].childNodes[0].alt = li[i].childNodes[1].innerHTML;
-    li[i].childNodes[0].alt += ' Restaurant Picture';
-  }
-}
-
 skipLinks = () => {
   const skipLink = document.getElementById('skip');
   // bind a click event to the 'skip' link
@@ -230,6 +222,5 @@ skipLinks = () => {
 }
 
 window.addEventListener('load', function() {
-  insertAltToImg();
   skipLinks();
 });
